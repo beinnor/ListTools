@@ -1,0 +1,19 @@
+.placeholder-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.placeholder-page h2 {
+  margin: 0 0 1rem 0;
+  color: #2c3e50;
+  font-size: 2rem;
+}
+
+.placeholder-page p {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 1.25rem;
+}
+

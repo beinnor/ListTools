@@ -1,0 +1,142 @@
+.page2-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.page2-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page2-header h2 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+  font-size: 2rem;
+}
+
+.page2-header p {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 1rem;
+}
+
+.page2-input-section {
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+.input-group textarea {
+  padding: 0.75rem;
+  border: 2px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.input-group textarea:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.input-group textarea[readonly] {
+  background-color: #f8f9fa;
+  cursor: default;
+}
+
+.page2-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 150px;
+}
+
+.action-button:hover {
+  background-color: #2980b9;
+}
+
+.action-button:active {
+  background-color: #21618c;
+}
+
+.action-button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.action-button:disabled:hover {
+  background-color: #95a5a6;
+}
+
+.duplicates-section {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+}
+
+.duplicates-label {
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+  color: #856404;
+  font-size: 0.9rem;
+}
+
+.duplicates-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.duplicate-item {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: #ffc107;
+  color: #856404;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.page2-output-section {
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .page2-input-section,
+  .page2-output-section {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
