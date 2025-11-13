@@ -26,7 +26,7 @@ function Navigation() {
           </li>
           <li>
             <NavLink to="/page3" className={({ isActive }) => isActive ? 'active' : ''}>
-              Page 3
+              List Filter
             </NavLink>
           </li>
           <li>
