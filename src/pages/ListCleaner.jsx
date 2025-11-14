@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './Page2.css'
+import './ListCleaner.css'
 
-function Page2() {
+function ListCleaner() {
   const [inputList, setInputList] = useState('')
   const [outputList, setOutputList] = useState('')
   const [duplicates, setDuplicates] = useState([])
@@ -62,13 +62,13 @@ function Page2() {
   }
 
   return (
-    <div className="page2-container">
-      <div className="page2-header">
+    <div className="listcleaner-container">
+      <div className="listcleaner-header">
         <h2>ListCleaner</h2>
         <p>Remove duplicates and sort your list</p>
       </div>
 
-      <div className="page2-input-section">
+      <div className="listcleaner-input-section">
         <div className="input-group">
           <label htmlFor="inputList">Input List</label>
           <textarea
@@ -94,7 +94,7 @@ function Page2() {
         )}
       </div>
 
-      <div className="page2-actions">
+      <div className="listcleaner-actions">
         <button onClick={removeDuplicates} className="action-button">
           Remove Duplicates
         </button>
@@ -104,7 +104,7 @@ function Page2() {
       </div>
 
       {outputList && (
-        <div className="page2-output-section">
+        <div className="listcleaner-output-section">
           <div className="input-group">
             <label htmlFor="outputList">Output List</label>
             <textarea
@@ -120,4 +120,4 @@ function Page2() {
   )
 }
 
-export default Page2
+export default ListCleaner

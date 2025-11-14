@@ -16,16 +16,16 @@ function Navigation() {
               to="/listdiff" 
               className={({ isActive }) => (isActive || isListDiffActive) ? 'active' : ''}
             >
-              ListDiff
+              List Diff
             </NavLink>
           </li>
           <li>
-            <NavLink to="/page2" className={({ isActive }) => isActive ? 'active' : ''}>
-              ListCleaner
+            <NavLink to="/listcleaner" className={({ isActive }) => isActive ? 'active' : ''}>
+              List Cleaner
             </NavLink>
           </li>
           <li>
-            <NavLink to="/page3" className={({ isActive }) => isActive ? 'active' : ''}>
+            <NavLink to="/listfilter" className={({ isActive }) => isActive ? 'active' : ''}>
               List Filter
             </NavLink>
           </li>
