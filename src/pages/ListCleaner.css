@@ -1,27 +1,27 @@
-.page2-container {
+.listcleaner-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
 }
 
-.page2-header {
+.listcleaner-header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.page2-header h2 {
+.listcleaner-header h2 {
   margin: 0 0 0.5rem 0;
   color: #2c3e50;
   font-size: 2rem;
 }
 
-.page2-header p {
+.listcleaner-header p {
   margin: 0;
   color: #7f8c8d;
   font-size: 1rem;
 }
 
-.page2-input-section {
+.listcleaner-input-section {
   margin-bottom: 1.5rem;
 }
 
@@ -58,7 +58,7 @@
   cursor: default;
 }
 
-.page2-actions {
+.listcleaner-actions {
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -127,13 +127,13 @@
   font-weight: 500;
 }
 
-.page2-output-section {
+.listcleaner-output-section {
   margin-top: 2rem;
 }
 
 @media (min-width: 768px) {
-  .page2-input-section,
-  .page2-output-section {
+  .listcleaner-input-section,
+  .listcleaner-output-section {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;

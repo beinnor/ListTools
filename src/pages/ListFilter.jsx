@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './Page3.css'
+import './ListFilter.css'
 
-function Page3() {
+function ListFilter() {
   const [inputList, setInputList] = useState('')
   const [filterType, setFilterType] = useState('contains')
   const [filterValue, setFilterValue] = useState('')
@@ -263,4 +263,4 @@ function Page3() {
   )
 }
 
-export default Page3
+export default ListFilter
