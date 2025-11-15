@@ -30,15 +30,11 @@ function Navigation() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/page4" className={({ isActive }) => isActive ? 'active' : ''}>
-              Page 4
+            <NavLink to="/jsonviewer" className={({ isActive }) => isActive ? 'active' : ''}>
+              JSON Viewer
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/page5" className={({ isActive }) => isActive ? 'active' : ''}>
-              Page 5
-            </NavLink>
-          </li>
+          
         </ul>
         <NavLink 
           to="/settings" 
