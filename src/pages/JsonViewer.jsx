@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './Page4.css'
+import './JsonViewer.css'
 
-function Page4() {
+function JsonViewer() {
   const [jsonInput, setJsonInput] = useState('')
   const [jsonData, setJsonData] = useState(null)
   const [error, setError] = useState('')
@@ -170,8 +170,8 @@ function Page4() {
   }
 
   return (
-    <div className="json-viewer-container">
-      <div className="json-viewer-header">
+    <div className="jsonviewer-container">
+      <div className="jsonviewer-header">
         <h2>JSON Viewer</h2>
         <p>Paste your JSON content and visualize it as a collapsible tree</p>
       </div>
@@ -205,8 +205,8 @@ function Page4() {
       </div>
 
       {jsonData && (
-        <div className="json-viewer-section">
-          <div className="json-viewer-controls">
+        <div className="jsonviewer-section">
+          <div className="jsonviewer-controls">
             <div className="search-control">
               <input
                 type="text"
@@ -234,4 +234,4 @@ function Page4() {
   )
 }
 
-export default Page4
+export default JsonViewer

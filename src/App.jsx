@@ -4,8 +4,8 @@ import Navigation from './components/Navigation'
 import ListDiff from './pages/ListDiff'
 import ListCleaner from './pages/ListCleaner'
 import ListFilter from './pages/ListFilter'
-import Page4 from './pages/Page4'
-import Page5 from './pages/Page5'
+import JsonViewer from './pages/JsonViewer'
+
 import Settings from './pages/Settings'
 
 function App() {
@@ -19,8 +19,8 @@ function App() {
             <Route path="/listdiff" element={<ListDiff />} />
             <Route path="/listcleaner" element={<ListCleaner />} />
             <Route path="/listfilter" element={<ListFilter />} />
-            <Route path="/page4" element={<Page4 />} />
-            <Route path="/page5" element={<Page5 />} />
+            <Route path="/jsonviewer" element={<JsonViewer />} />
+           
             <Route path="/settings" element={<Settings />} />
           </Routes>
         </main>

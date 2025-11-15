@@ -1,21 +1,21 @@
-.json-viewer-container {
+.jsonviewer-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem 1rem;
 }
 
-.json-viewer-header {
+.jsonviewer-header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.json-viewer-header h2 {
+.jsonviewer-header h2 {
   margin: 0 0 0.5rem 0;
   color: #2c3e50;
   font-size: 2rem;
 }
 
-.json-viewer-header p {
+.jsonviewer-header p {
   margin: 0;
   color: #7f8c8d;
   font-size: 1rem;
@@ -102,11 +102,11 @@
   cursor: not-allowed;
 }
 
-.json-viewer-section {
+.jsonviewer-section {
   margin-top: 2rem;
 }
 
-.json-viewer-controls {
+.jsonviewer-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -250,13 +250,13 @@
 
 @media (min-width: 768px) {
   .json-input-section,
-  .json-viewer-section {
+  .jsonviewer-section {
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
   }
 
-  .json-viewer-controls {
+  .jsonviewer-controls {
     flex-wrap: nowrap;
   }
 }
