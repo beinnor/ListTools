@@ -6,6 +6,8 @@ function ListCleaner() {
   const [outputList, setOutputList] = useState('')
   const [duplicates, setDuplicates] = useState([])
   const [sortDirection, setSortDirection] = useState('asc') // 'asc' or 'desc'
+  const [markedDuplicates, setMarkedDuplicates] = useState(null) // { item: color } mapping
+  const [duplicateColors, setDuplicateColors] = useState({}) // { item: color } mapping
 
   const parseList = (text) => {
     return text
@@ -16,6 +18,44 @@ function ListCleaner() {
 
   const formatList = (items) => {
     return items.join('\n')
+  }
+
+  // Color palette for marking duplicates
+  const duplicateColorPalette = [
+    '#ffebee', '#e3f2fd', '#f3e5f5', '#e8f5e9', 
+    '#fff3e0', '#fce4ec', '#e0f2f1', '#fff9c4',
+    '#f1f8e9', '#e8eaf6', '#fef5e7', '#fce4ec'
+  ]
+
+  const markDuplicates = () => {
+    const items = parseList(inputList)
+    if (items.length === 0) {
+      setMarkedDuplicates(null)
+      setDuplicateColors({})
+      return
+    }
+
+    // Find all duplicates
+    const itemCounts = new Map()
+    items.forEach(item => {
+      itemCounts.set(item, (itemCounts.get(item) || 0) + 1)
+    })
+
+    // Group duplicates by their value
+    const duplicateGroups = new Map()
+    let colorIndex = 0
+
+    itemCounts.forEach((count, item) => {
+      if (count > 1) {
+        if (!duplicateGroups.has(item)) {
+          duplicateGroups.set(item, duplicateColorPalette[colorIndex % duplicateColorPalette.length])
+          colorIndex++
+        }
+      }
+    })
+
+    setDuplicateColors(Object.fromEntries(duplicateGroups))
+    setMarkedDuplicates(true)
   }
 
   const removeDuplicates = () => {
@@ -77,6 +117,8 @@ function ListCleaner() {
             onChange={(e) => {
               setInputList(e.target.value)
               setDuplicates([])
+              setMarkedDuplicates(null)
+              setDuplicateColors({})
             }}
             placeholder="Enter items separated by commas or newlines..."
             rows="10"
@@ -95,6 +137,9 @@ function ListCleaner() {
       </div>
 
       <div className="listcleaner-actions">
+        <button onClick={markDuplicates} className="action-button">
+          Mark Duplicates
+        </button>
         <button onClick={removeDuplicates} className="action-button">
           Remove Duplicates
         </button>
@@ -102,6 +147,29 @@ function ListCleaner() {
           Sort {sortDirection === 'asc' ? '↑' : '↓'}
         </button>
       </div>
+
+      {markedDuplicates && inputList && (
+        <div className="marked-duplicates-display">
+          <div className="input-group">
+            <label>Marked Input (duplicates highlighted)</label>
+            <div className="marked-lines-container">
+              {parseList(inputList).map((item, index) => {
+                const color = duplicateColors[item]
+                const isDuplicate = color !== undefined
+                return (
+                  <div
+                    key={index}
+                    className={`marked-line ${isDuplicate ? 'duplicate-line' : ''}`}
+                    style={isDuplicate ? { backgroundColor: color, borderLeftColor: color } : {}}
+                  >
+                    {item}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      )}
 
       {outputList && (
         <div className="listcleaner-output-section">
