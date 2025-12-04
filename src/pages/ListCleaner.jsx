@@ -105,6 +105,16 @@ function ListCleaner() {
     setDuplicateColors({})
   }
 
+  const removeNonNumeric = () => {
+    const items = parseList(inputList)
+    const numericItems = items
+      .map(item => item.replace(/[^0-9]/g, ''))
+      .filter(item => item.length > 0)
+    setInputList(formatList(numericItems))
+    setMarkedDuplicates(null)
+    setDuplicateColors({})
+  }
+
   return (
     <div className="listcleaner-container">
       <div className="listcleaner-header">
@@ -171,6 +181,9 @@ function ListCleaner() {
         </button>
         <button onClick={sortList} className="action-button" disabled={!inputList}>
           Sort {sortDirection === 'asc' ? '↑' : '↓'}
+        </button>
+        <button onClick={removeNonNumeric} className="action-button" disabled={!inputList}>
+          Remove Non-Numeric
         </button>
       </div>
     </div>
