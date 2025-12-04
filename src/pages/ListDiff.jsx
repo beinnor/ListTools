@@ -47,7 +47,7 @@ function ListDiff() {
 
       <div className="listdiff-inputs">
         <div className="input-group">
-          <label htmlFor="listA">List A{parseList(listA).length > 0 && ` (${parseList(listA).length} items)`}</label>
+          <label htmlFor="listA">List A{(() => { const count = parseList(listA).length; return count > 0 ? ` (${count} items)` : ''; })()}</label>
           <textarea
             id="listA"
             value={listA}
@@ -58,7 +58,7 @@ function ListDiff() {
         </div>
 
         <div className="input-group">
-          <label htmlFor="listB">List B{parseList(listB).length > 0 && ` (${parseList(listB).length} items)`}</label>
+          <label htmlFor="listB">List B{(() => { const count = parseList(listB).length; return count > 0 ? ` (${count} items)` : ''; })()}</label>
           <textarea
             id="listB"
             value={listB}
