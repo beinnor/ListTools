@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import CopyButton from '../components/CopyButton'
 import './ListCleaner.css'
 
 function ListCleaner() {
@@ -114,7 +115,12 @@ function ListCleaner() {
 
       <div className="listcleaner-input-section">
         <div className="input-group">
-          <label htmlFor="inputList">Input List</label>
+          <div className="label-with-copy">
+            <label htmlFor="inputList">Input List</label>
+            {inputList && (
+              <CopyButton getText={() => inputList} title="Copy List" />
+            )}
+          </div>
           {markedDuplicates && inputList ? (
             <div 
               className="marked-lines-container"

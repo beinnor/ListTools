@@ -38,3 +38,14 @@ body {
   width: 100%;
 }
 
+.label-with-copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.label-with-copy label {
+  margin-bottom: 0;
+}
+
