@@ -131,19 +131,16 @@
   margin-top: 2rem;
 }
 
-.marked-duplicates-display {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
 .marked-lines-container {
   border: 2px solid #bdc3c7;
   border-radius: 4px;
   background-color: white;
+  min-height: 200px;
   max-height: 400px;
   overflow-y: auto;
   padding: 0.5rem;
   font-family: 'Courier New', monospace;
+  cursor: pointer;
 }
 
 .marked-line {

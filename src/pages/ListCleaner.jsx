@@ -3,7 +3,6 @@ import './ListCleaner.css'
 
 function ListCleaner() {
   const [inputList, setInputList] = useState('')
-  const [outputList, setOutputList] = useState('')
   const [duplicates, setDuplicates] = useState([])
   const [sortDirection, setSortDirection] = useState('asc') // 'asc' or 'desc'
   const [markedDuplicates, setMarkedDuplicates] = useState(null) // { item: color } mapping
@@ -82,13 +81,13 @@ function ListCleaner() {
     
     setDuplicates(Array.from(duplicateSet))
     const uniqueItems = Array.from(new Set(items))
-    setOutputList(formatList(uniqueItems))
+    setInputList(formatList(uniqueItems))
   }
 
   const sortList = () => {
-    if (!outputList) return
+    if (!inputList) return
     
-    const items = parseList(outputList)
+    const items = parseList(inputList)
     const sortedItems = [...items].sort((a, b) => {
       if (sortDirection === 'asc') {
         return a.localeCompare(b)
@@ -96,9 +95,14 @@ function ListCleaner() {
         return b.localeCompare(a)
       }
     })
-    setOutputList(formatList(sortedItems))
+    setInputList(formatList(sortedItems))
     // Toggle sort direction for next click
     setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
+  }
+
+  const handleEditMarked = () => {
+    setMarkedDuplicates(null)
+    setDuplicateColors({})
   }
 
   return (
@@ -111,18 +115,40 @@ function ListCleaner() {
       <div className="listcleaner-input-section">
         <div className="input-group">
           <label htmlFor="inputList">Input List</label>
-          <textarea
-            id="inputList"
-            value={inputList}
-            onChange={(e) => {
-              setInputList(e.target.value)
-              setDuplicates([])
-              setMarkedDuplicates(null)
-              setDuplicateColors({})
-            }}
-            placeholder="Enter items separated by commas or newlines..."
-            rows="10"
-          />
+          {markedDuplicates && inputList ? (
+            <div 
+              className="marked-lines-container"
+              onClick={handleEditMarked}
+              title="Click to edit"
+            >
+              {parseList(inputList).map((item, index) => {
+                const color = duplicateColors[item]
+                const isDuplicate = color !== undefined
+                return (
+                  <div
+                    key={index}
+                    className={`marked-line ${isDuplicate ? 'duplicate-line' : ''}`}
+                    style={isDuplicate ? { backgroundColor: color, borderLeftColor: color } : {}}
+                  >
+                    {item}
+                  </div>
+                )
+              })}
+            </div>
+          ) : (
+            <textarea
+              id="inputList"
+              value={inputList}
+              onChange={(e) => {
+                setInputList(e.target.value)
+                setDuplicates([])
+                setMarkedDuplicates(null)
+                setDuplicateColors({})
+              }}
+              placeholder="Enter items separated by commas or newlines..."
+              rows="10"
+            />
+          )}
         </div>
         {duplicates.length > 0 && (
           <div className="duplicates-section">
@@ -143,47 +169,10 @@ function ListCleaner() {
         <button onClick={removeDuplicates} className="action-button">
           Remove Duplicates
         </button>
-        <button onClick={sortList} className="action-button" disabled={!outputList}>
+        <button onClick={sortList} className="action-button" disabled={!inputList}>
           Sort {sortDirection === 'asc' ? '↑' : '↓'}
         </button>
       </div>
-
-      {markedDuplicates && inputList && (
-        <div className="marked-duplicates-display">
-          <div className="input-group">
-            <label>Marked Input (duplicates highlighted)</label>
-            <div className="marked-lines-container">
-              {parseList(inputList).map((item, index) => {
-                const color = duplicateColors[item]
-                const isDuplicate = color !== undefined
-                return (
-                  <div
-                    key={index}
-                    className={`marked-line ${isDuplicate ? 'duplicate-line' : ''}`}
-                    style={isDuplicate ? { backgroundColor: color, borderLeftColor: color } : {}}
-                  >
-                    {item}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {outputList && (
-        <div className="listcleaner-output-section">
-          <div className="input-group">
-            <label htmlFor="outputList">Output List</label>
-            <textarea
-              id="outputList"
-              value={outputList}
-              readOnly
-              rows="10"
-            />
-          </div>
-        </div>
-      )}
     </div>
   )
 }
