@@ -133,7 +133,7 @@ function ListFilter() {
 
       <div className="page3-input-section">
         <div className="input-group">
-          <label htmlFor="inputList">Input List</label>
+          <label htmlFor="inputList">Input List{parseList(inputList).length > 0 && ` (${parseList(inputList).length} items)`}</label>
           <textarea
             id="inputList"
             value={inputList}
@@ -249,7 +249,7 @@ function ListFilter() {
       {filteredList && (
         <div className="page3-output-section">
           <div className="input-group">
-            <label htmlFor="filteredList">Filtered List</label>
+            <label htmlFor="filteredList">Filtered List{parseList(filteredList).length > 0 && ` (${parseList(filteredList).length} items)`}</label>
             <textarea
               id="filteredList"
               value={filteredList}

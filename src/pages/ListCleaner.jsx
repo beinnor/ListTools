@@ -114,7 +114,7 @@ function ListCleaner() {
 
       <div className="listcleaner-input-section">
         <div className="input-group">
-          <label htmlFor="inputList">Input List</label>
+          <label htmlFor="inputList">Input List{parseList(inputList).length > 0 && ` (${parseList(inputList).length} items)`}</label>
           {markedDuplicates && inputList ? (
             <div 
               className="marked-lines-container"

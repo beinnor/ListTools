@@ -47,7 +47,7 @@ function ListDiff() {
 
       <div className="listdiff-inputs">
         <div className="input-group">
-          <label htmlFor="listA">List A</label>
+          <label htmlFor="listA">List A{parseList(listA).length > 0 && ` (${parseList(listA).length} items)`}</label>
           <textarea
             id="listA"
             value={listA}
@@ -58,7 +58,7 @@ function ListDiff() {
         </div>
 
         <div className="input-group">
-          <label htmlFor="listB">List B</label>
+          <label htmlFor="listB">List B{parseList(listB).length > 0 && ` (${parseList(listB).length} items)`}</label>
           <textarea
             id="listB"
             value={listB}
@@ -79,7 +79,7 @@ function ListDiff() {
         <div className="listdiff-results">
           <div className="result-section">
             <div className="result-header">
-              <h3>Only in A</h3>
+              <h3>Only in A ({results.onlyInA.length} items)</h3>
               <p className="result-subtitle">(but not in B)</p>
             </div>
             <div className="result-content">
@@ -97,7 +97,7 @@ function ListDiff() {
           
           <div className="result-section">
             <div className="result-header">
-              <h3>Only in B</h3>
+              <h3>Only in B ({results.onlyInB.length} items)</h3>
               <p className="result-subtitle">(but not in A)</p>
             </div>
             <div className="result-content">
@@ -115,7 +115,7 @@ function ListDiff() {
 
           <div className="result-section">
             <div className="result-header">
-              <h3>A ∩ B</h3>
+              <h3>A ∩ B ({results.common.length} items)</h3>
               <p className="result-subtitle">(A AND B)</p>
             </div>
             <div className="result-content">
@@ -135,7 +135,7 @@ function ListDiff() {
 
           <div className="result-section">
             <div className="result-header">
-              <h3>A ∪ B</h3>
+              <h3>A ∪ B ({results.union.length} items)</h3>
               <p className="result-subtitle">(A OR B)</p>
             </div>
             <div className="result-content">
