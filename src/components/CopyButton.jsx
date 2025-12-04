@@ -1,8 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './CopyButton.css'
 
 function CopyButton({ getText, title = 'Copy to clipboard' }) {
   const [copied, setCopied] = useState(false)
+  const timeoutRef = useRef(null)
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
 
   const handleCopy = async () => {
     const text = getText()
@@ -11,9 +20,29 @@ function CopyButton({ getText, title = 'Copy to clipboard' }) {
     try {
       await navigator.clipboard.writeText(text)
       setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+      timeoutRef.current = setTimeout(() => setCopied(false), 2000)
     } catch (err) {
-      console.error('Failed to copy:', err)
+      // Fallback for browsers without clipboard API or non-HTTPS
+      try {
+        const textArea = document.createElement('textarea')
+        textArea.value = text
+        textArea.style.position = 'fixed'
+        textArea.style.left = '-9999px'
+        document.body.appendChild(textArea)
+        textArea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textArea)
+        setCopied(true)
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
+        timeoutRef.current = setTimeout(() => setCopied(false), 2000)
+      } catch (fallbackErr) {
+        console.error('Failed to copy:', fallbackErr)
+      }
     }
   }
 
