@@ -125,6 +125,7 @@ function ListCleaner() {
 
       <div className="listcleaner-input-section">
         <div className="input-group">
+          <label htmlFor="inputList">Input List{(() => { const count = parseList(inputList).length; return count > 0 ? ` (${count} items)` : ''; })()}</label>
           <div className="label-with-copy">
             <label htmlFor="inputList">Input List</label>
             {inputList && (

@@ -48,7 +48,7 @@ function ListDiff() {
 
       <div className="listdiff-inputs">
         <div className="input-group">
-          <label htmlFor="listA">List A</label>
+          <label htmlFor="listA">List A{(() => { const count = parseList(listA).length; return count > 0 ? ` (${count} items)` : ''; })()}</label>
           <textarea
             id="listA"
             value={listA}
@@ -59,7 +59,7 @@ function ListDiff() {
         </div>
 
         <div className="input-group">
-          <label htmlFor="listB">List B</label>
+          <label htmlFor="listB">List B{(() => { const count = parseList(listB).length; return count > 0 ? ` (${count} items)` : ''; })()}</label>
           <textarea
             id="listB"
             value={listB}
@@ -80,7 +80,7 @@ function ListDiff() {
         <div className="listdiff-results">
           <div className="result-section">
             <div className="result-header">
-              <h3>Only in A</h3>
+              <h3>Only in A ({results.onlyInA.length} items)</h3>
               <p className="result-subtitle">(but not in B)</p>
               {results.onlyInA.length > 0 && (
                 <CopyButton getText={() => results.onlyInA.join('\n')} title="Copy Only in A" />
@@ -101,7 +101,7 @@ function ListDiff() {
           
           <div className="result-section">
             <div className="result-header">
-              <h3>Only in B</h3>
+              <h3>Only in B ({results.onlyInB.length} items)</h3>
               <p className="result-subtitle">(but not in A)</p>
               {results.onlyInB.length > 0 && (
                 <CopyButton getText={() => results.onlyInB.join('\n')} title="Copy Only in B" />
@@ -122,7 +122,7 @@ function ListDiff() {
 
           <div className="result-section">
             <div className="result-header">
-              <h3>A ∩ B</h3>
+              <h3>A ∩ B ({results.common.length} items)</h3>
               <p className="result-subtitle">(A AND B)</p>
               {results.common.length > 0 && (
                 <CopyButton getText={() => results.common.join('\n')} title="Copy Intersection" />
@@ -145,7 +145,7 @@ function ListDiff() {
 
           <div className="result-section">
             <div className="result-header">
-              <h3>A ∪ B</h3>
+              <h3>A ∪ B ({results.union.length} items)</h3>
               <p className="result-subtitle">(A OR B)</p>
               {results.union.length > 0 && (
                 <CopyButton getText={() => results.union.join('\n')} title="Copy Union" />
