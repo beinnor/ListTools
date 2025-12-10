@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import CopyButton from '../components/CopyButton'
 import './ListCleaner.css'
 
 function ListCleaner() {
@@ -105,6 +106,16 @@ function ListCleaner() {
     setDuplicateColors({})
   }
 
+  const removeNonNumeric = () => {
+    const items = parseList(inputList)
+    const numericItems = items
+      .map(item => item.replace(/[^0-9]/g, ''))
+      .filter(item => item.length > 0)
+    setInputList(formatList(numericItems))
+    setMarkedDuplicates(null)
+    setDuplicateColors({})
+  }
+
   return (
     <div className="listcleaner-container">
       <div className="listcleaner-header">
@@ -115,6 +126,12 @@ function ListCleaner() {
       <div className="listcleaner-input-section">
         <div className="input-group">
           <label htmlFor="inputList">Input List{(() => { const count = parseList(inputList).length; return count > 0 ? ` (${count} items)` : ''; })()}</label>
+          <div className="label-with-copy">
+            <label htmlFor="inputList">Input List</label>
+            {inputList && (
+              <CopyButton getText={() => inputList} title="Copy List" />
+            )}
+          </div>
           {markedDuplicates && inputList ? (
             <div 
               className="marked-lines-container"
@@ -171,6 +188,9 @@ function ListCleaner() {
         </button>
         <button onClick={sortList} className="action-button" disabled={!inputList}>
           Sort {sortDirection === 'asc' ? '↑' : '↓'}
+        </button>
+        <button onClick={removeNonNumeric} className="action-button" disabled={!inputList}>
+          Remove Non-Numeric
         </button>
       </div>
     </div>

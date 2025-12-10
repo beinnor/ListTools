@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import CopyButton from '../components/CopyButton'
 import './JsonViewer.css'
 
 function JsonViewer() {
@@ -178,7 +179,12 @@ function JsonViewer() {
 
       <div className="json-input-section">
         <div className="input-group">
-          <label htmlFor="jsonInput">JSON Input</label>
+          <div className="label-with-copy">
+            <label htmlFor="jsonInput">JSON Input</label>
+            {jsonInput && (
+              <CopyButton getText={() => jsonInput} title="Copy JSON" />
+            )}
+          </div>
           <textarea
             id="jsonInput"
             value={jsonInput}

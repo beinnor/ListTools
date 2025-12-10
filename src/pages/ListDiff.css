@@ -101,6 +101,11 @@
   border-bottom: 2px solid #3498db;
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.result-header .copy-button {
+  margin-left: auto;
 }
 
 .result-section h3 {

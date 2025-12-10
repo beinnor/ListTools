@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import CopyButton from '../components/CopyButton'
 import './ListDiff.css'
 
 function ListDiff() {
@@ -81,6 +82,9 @@ function ListDiff() {
             <div className="result-header">
               <h3>Only in A ({results.onlyInA.length} items)</h3>
               <p className="result-subtitle">(but not in B)</p>
+              {results.onlyInA.length > 0 && (
+                <CopyButton getText={() => results.onlyInA.join('\n')} title="Copy Only in A" />
+              )}
             </div>
             <div className="result-content">
               {results.onlyInA.length > 0 ? (
@@ -99,6 +103,9 @@ function ListDiff() {
             <div className="result-header">
               <h3>Only in B ({results.onlyInB.length} items)</h3>
               <p className="result-subtitle">(but not in A)</p>
+              {results.onlyInB.length > 0 && (
+                <CopyButton getText={() => results.onlyInB.join('\n')} title="Copy Only in B" />
+              )}
             </div>
             <div className="result-content">
               {results.onlyInB.length > 0 ? (
@@ -117,6 +124,9 @@ function ListDiff() {
             <div className="result-header">
               <h3>A ∩ B ({results.common.length} items)</h3>
               <p className="result-subtitle">(A AND B)</p>
+              {results.common.length > 0 && (
+                <CopyButton getText={() => results.common.join('\n')} title="Copy Intersection" />
+              )}
             </div>
             <div className="result-content">
               {results.common.length > 0 ? (
@@ -137,6 +147,9 @@ function ListDiff() {
             <div className="result-header">
               <h3>A ∪ B ({results.union.length} items)</h3>
               <p className="result-subtitle">(A OR B)</p>
+              {results.union.length > 0 && (
+                <CopyButton getText={() => results.union.join('\n')} title="Copy Union" />
+              )}
             </div>
             <div className="result-content">
               {results.union.length > 0 ? (

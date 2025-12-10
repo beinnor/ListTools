@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import CopyButton from '../components/CopyButton'
 import './ListFilter.css'
 
 function ListFilter() {
@@ -250,6 +251,10 @@ function ListFilter() {
         <div className="page3-output-section">
           <div className="input-group">
             <label htmlFor="filteredList">Filtered List{(() => { const count = parseList(filteredList).length; return count > 0 ? ` (${count} items)` : ''; })()}</label>
+            <div className="label-with-copy">
+              <label htmlFor="filteredList">Filtered List</label>
+              <CopyButton getText={() => filteredList} title="Copy Filtered List" />
+            </div>
             <textarea
               id="filteredList"
               value={filteredList}
